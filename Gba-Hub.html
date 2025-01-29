@@ -104,10 +104,15 @@
         /* Footer Styling */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 4px 0;  /* Reduced padding */
             background-color: #333;
             color: white;
-            margin-top: auto;  /* This pushes the footer to the bottom of the screen */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            font-size: 0.7em;  /* Smaller font size */
         }
     </style>
 </head>
