@@ -1,1 +1,227 @@
-https://Gba-Games-html.github.io/Online-Games/Block-blast/index.html
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Syfer-eng's Online Game's</title>
+
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="css/ccv3kiu.css">  <!-- Styling for background and layout -->
+    <link rel="stylesheet" href="css/index.css">     <!-- General styling for content -->
+    <link rel="stylesheet" href="css/collapsible.css"> <!-- Styling for collapsible sections -->
+    <link rel="stylesheet" href="css/particles-js.css"> <!-- Styling for particles effect -->
+
+    <!-- Include particles.js library (version 2.0.0) from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes full height of the viewport */
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ffcc00;  /* Bright yellow title color */
+        }
+
+        /* Styling for buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            flex-grow: 1; /* This makes sure the button container grows to take up remaining space */
+        }
+
+        .game-button {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            border: 2px solid #ffcc00;
+        }
+
+        .game-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .game-button .game-name {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            color: #ffcc00;  /* Text color to match the theme */
+            font-size: 1.5em;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            background-color: transparent; /* Remove background */
+        }
+
+        .game-button:hover img {
+            filter: blur(4px) brightness(60%);
+        }
+
+        .game-button:hover .game-name {
+            opacity: 1;
+            transform: translateY(-10px); /* Adds a slight upward movement when hovered */
+        }
+
+        .game-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 4px 0;  /* Reduced padding */
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            font-size: 0.7em;  /* Smaller font size */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div> <!-- Particles effect background -->
+
+    <header>
+        <h1>Welcome To Syfer-eng's Website For Online Games!</h1>
+    </header>
+
+    <!-- Button Section with Images and Hover Effects -->
+    <div class="button-container">
+        <!-- Game Button 1 -->
+        <a href="https://gba-games-html.github.io/Online-Games/Block-Blast.html">
+            <div class="game-button">
+                <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/Home-Button.png?raw=true" alt="¯\_(ツ)_/¯">
+                <div class="game-name">Block Blast</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Syfer-eng Games</p>
+    </footer>
+
+    <!-- Particles.js Initialization -->
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1
+                    }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 40,
+                        "size_min": 0.1
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+
+</html>
