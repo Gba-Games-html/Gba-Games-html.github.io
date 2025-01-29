@@ -37,20 +37,18 @@
         }
 
         /* Style for the footer */
-/* Style for the footer */
-footer {
-    text-align: center;
-    padding: 5px 0;  /* Reduced padding */
-    background-color: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    z-index: 10;
-    font-size: 0.7em;  /* Smaller font size */
-}
-
+        footer {
+            text-align: center;
+            padding: 5px 0;  /* Reduced padding */
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            z-index: 10;
+            font-size: 0.7em;  /* Smaller font size */
+        }
 
         /* Hoverable tab to show game images */
         .game-tab {
@@ -99,12 +97,33 @@ footer {
             display: block;
         }
 
+        /* Rotating PNG image at the top-left corner */
+        .rotating-image {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;  /* Set a size for the image */
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;  /* Smooth rotation */
+        }
+
+        /* Rotate the image when hovered */
+        .rotating-image:hover {
+            transform: rotate(-360deg);  /* Rotate 360 degrees */
+        }
+
     </style>
 </head>
 
 <body>
     <!-- Particles Background -->
     <div id="particles-js"></div>
+
+    <!-- Rotating Home Button Image with Link -->
+    <a href="https://gba-games-html.github.io/Gba-Hub.html" target="_blank">
+        <img src="https://gba-games-html.github.io/images/Home-Button.png" alt="Home Button" class="rotating-image">
+    </a>
 
     <header>
         <h1></h1>
