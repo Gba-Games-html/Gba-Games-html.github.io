@@ -26,8 +26,12 @@
             padding: 0;
             overflow: hidden;
             background-color: #111;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes full height of the viewport */
         }
 
+        /* Header Styling */
         header {
             text-align: center;
             padding: 50px;
@@ -46,6 +50,7 @@
             gap: 20px;
             flex-wrap: wrap;
             margin-top: 30px;
+            flex-grow: 1; /* This makes sure the button container grows to take up remaining space */
         }
 
         .game-button {
@@ -67,22 +72,22 @@
             transition: all 0.3s ease;
         }
 
-.game-button .game-name {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
-    color: #ffcc00;  /* Text color to match the theme */
-    font-size: 1.5em;
-    padding: 10px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    background-color: transparent; /* Remove background */
-}
+        .game-button .game-name {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            color: #ffcc00;  /* Text color to match the theme */
+            font-size: 1.5em;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            background-color: transparent; /* Remove background */
+        }
 
         .game-button:hover img {
             filter: blur(4px) brightness(60%);
@@ -97,13 +102,14 @@
             transform: scale(1.05);
         }
 
+        /* Footer Styling */
         footer {
             text-align: center;
             padding: 20px;
             background-color: #333;
             color: white;
+            margin-top: auto;  /* This pushes the footer to the bottom of the screen */
         }
-
     </style>
 </head>
 
