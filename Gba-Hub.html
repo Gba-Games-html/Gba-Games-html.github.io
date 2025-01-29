@@ -7,37 +7,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Custom Webpage</title>
+    <title>Custom Styled Webpage</title>
 
     <!-- External CSS Files -->
-    <link rel="stylesheet" href="css/ccv3kiu.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/collapsible.css">
-    <link rel="stylesheet" href="css/particles-js.css">
+    <link rel="stylesheet" href="css/ccv3kiu.css">  <!-- Styling for background and layout -->
+    <link rel="stylesheet" href="css/index.css">     <!-- General styling for content -->
+    <link rel="stylesheet" href="css/collapsible.css"> <!-- Styling for collapsible sections -->
+    <link rel="stylesheet" href="css/particles-js.css"> <!-- Styling for particles effect -->
 
     <!-- Optionally, you can include JavaScript files here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-
+    
     <style>
-        /* Add inline styles or overrides if necessary */
+        /* General Body Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
+
+        header {
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ffcc00;  /* Bright yellow title color */
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #f4f4f4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .collapsible {
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .collapsible:hover {
+            background-color: #777;
+        }
+
+        .collapsible:after {
+            content: '\002B';  /* Unicode character for plus sign */
+            font-size: 18px;
+            color: white;
+            float: right;
+        }
+
+        .active:after {
+            content: "\2212";  /* Unicode character for minus sign */
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 
 <body>
-    <!-- Main content section -->
-    <div id="particles-js"></div> <!-- Particles background -->
+    <!-- Particles Background -->
+    <div id="particles-js"></div> <!-- Particles effect background -->
     
     <header>
         <h1>Welcome to My Custom Webpage</h1>
-        <p>This is a webpage with linked external styles and JS.</p>
+        <p>This is a webpage styled with linked CSS files and a dynamic particles background.</p>
     </header>
 
-    <!-- Example of Collapsible Section -->
+    <!-- Collapsible Section -->
     <div class="collapsible-container">
         <button class="collapsible">Click to Expand</button>
         <div class="content">
@@ -45,10 +106,10 @@
         </div>
     </div>
 
-    <!-- Example of Additional Content -->
+    <!-- About Section -->
     <section>
         <h2>About This Webpage</h2>
-        <p>This is an example of how to structure an HTML document with multiple external stylesheets and a dynamic background created using the particles.js library.</p>
+        <p>This webpage showcases the use of external CSS files for styling the layout, background, buttons, and titles. It also includes a particles.js effect in the background for added interactivity.</p>
     </section>
 
     <!-- Footer -->
@@ -60,7 +121,7 @@
     <script src="js/main.js"></script>
     <script src="js/collapsible.js"></script>
 
-    <!-- Particles JS Initialization -->
+    <!-- Particles.js Initialization -->
     <script>
         particlesJS("particles-js", {
             "particles": {
