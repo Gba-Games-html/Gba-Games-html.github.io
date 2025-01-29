@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Custom Webpage</title>
+
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="css/ccv3kiu.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/collapsible.css">
+    <link rel="stylesheet" href="css/particles-js.css">
+
+    <!-- Optionally, you can include JavaScript files here -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        /* Add inline styles or overrides if necessary */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main content section -->
+    <div id="particles-js"></div> <!-- Particles background -->
+    
+    <header>
+        <h1>Welcome to My Custom Webpage</h1>
+        <p>This is a webpage with linked external styles and JS.</p>
+    </header>
+
+    <!-- Example of Collapsible Section -->
+    <div class="collapsible-container">
+        <button class="collapsible">Click to Expand</button>
+        <div class="content">
+            <p>This is some collapsible content that can be hidden or shown when you click the button above.</p>
+        </div>
+    </div>
+
+    <!-- Example of Additional Content -->
+    <section>
+        <h2>About This Webpage</h2>
+        <p>This is an example of how to structure an HTML document with multiple external stylesheets and a dynamic background created using the particles.js library.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Custom Webpage</p>
+    </footer>
+
+    <!-- JS Files (Optional: You can link your own JS files or include external ones) -->
+    <script src="js/main.js"></script>
+    <script src="js/collapsible.js"></script>
+
+    <!-- Particles JS Initialization -->
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1
+                    }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 40,
+                        "size_min": 0.1
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+
+</html>
