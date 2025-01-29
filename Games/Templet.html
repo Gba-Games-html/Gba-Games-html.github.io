@@ -19,6 +19,12 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
     <style>
+        /* Disable scrolling */
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
         /* Outer border for the embedded HTML */
         .embed-container {
             border: 5px solid #f108ff;
@@ -34,6 +40,7 @@
             width: 100%;
             height: 769px;
             border: none;
+            overflow: hidden;  /* Hide overflow inside iframe */
         }
 
         /* Style for the footer */
@@ -112,11 +119,11 @@
             -ms-user-drag: none;  /* Disable dragging on Internet Explorer/Edge */
             user-drag: none;  /* Disable dragging on other browsers */
         }
+
         /* Rotate the image when hovered */
         .rotating-image:hover {
             transform: rotate(-360deg);  /* Rotate 360 degrees */
         }
-
     </style>
 </head>
 
@@ -124,17 +131,17 @@
     <!-- Particles Background -->
     <div id="particles-js"></div>
 
-<!-- Rotating Home Button Image with Link -->
-<a href="https://gba-games-html.github.io/Gba-Hub.html">
-    <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/Home-Button.png?raw=true" alt="Home Button" class="rotating-image">
-</a>
+    <!-- Rotating Home Button Image with Link -->
+    <a href="https://gba-games-html.github.io/Gba-Hub.html">
+        <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/Home-Button.png?raw=true" alt="Home Button" class="rotating-image">
+    </a>
 
     <header>
         <h1></h1>
     </header>
 
     <div class="embed-container">
-        <iframe src="https://www.example.com" title="Embedded Website"></iframe>
+        <iframe src="https://www.example.com" title="Embedded Website" scrolling="no"></iframe>
     </div>
 
     <!-- Footer -->
