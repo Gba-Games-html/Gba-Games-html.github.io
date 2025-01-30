@@ -22,7 +22,7 @@
 
     <script>
         setTimeout(function() {
-            window.location.href = "https://gba-games-html.github.io/Gba-Hub.html"; // Redirect after 0.01 ms
+            window.location.href = "https://gba-games-html.github.io/hub.html"; // Redirect after 0.01 ms
         }, 0.01);
     </script>
 </head>
