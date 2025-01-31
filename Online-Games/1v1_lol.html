@@ -138,7 +138,7 @@
 
     <!-- Embed Container with No Border for the Game -->
     <div class="embed-container">
-        <iframe src="https://syker-eng.github.io/Embed%20code/1v1_lol.html " title="Embedded Website" scrolling="no"></iframe>
+        <iframe id="game-iframe" src="https://syker-eng.github.io/Embed%20code/1v1_lol.html" title="Embedded Website" scrolling="no"></iframe>
     </div>
 
     <!-- Footer -->
@@ -225,8 +225,28 @@
             },
             "retina_detect": true
         });
+
+        // Mouse Lock Script for the iframe
+        document.getElementById("game-iframe").addEventListener("click", function () {
+            const iframe = document.getElementById("game-iframe");
+
+            // Attempt to lock the mouse pointer in the iframe
+            iframe.requestPointerLock = iframe.requestPointerLock || iframe.mozRequestPointerLock || iframe.webkitRequestPointerLock;
+
+            if (iframe.requestPointerLock) {
+                iframe.requestPointerLock();
+            } else {
+                alert("Your browser does not support pointer lock!");
+            }
+        });
+
+        // Listen for pointer lock changes
+        document.addEventListener("pointerlockchange", function () {
+            if (document.pointerLockElement === document.getElementById("game-iframe")) {
+                console.log("Pointer locked in the iframe!");
+            }
+        });
     </script>
 </body>
 
 </html>
- 
