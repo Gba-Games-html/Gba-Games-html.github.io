@@ -87,6 +87,34 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             z-index: 1;
             position: relative;
+            overflow: hidden; /* Disables internal scrollbars */
+        }
+        /* Disabling dragging on the iframe */
+        iframe {
+            pointer-events: auto;  /* Allow interaction with the iframe */
+        }
+
+        /* Fullscreen message styling */
+        #fullscreenMessage {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            z-index: 2;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-out, visibility 0.5s ease-out;
+        }
+
+        /* When fullscreen message is active */
+        #fullscreenMessage.active {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -97,8 +125,12 @@
     </header>
     <nav>
         <a href="https://gba-games-html.github.io/Online-Games/index.html" onclick="loadPage('https://syfer-eng.github.io')">Home</a>
+        <a href="#" onclick="toggleFullscreen()">Fullscreen</a> <!-- Added fullscreen button -->
     </nav>
-    <iframe id="contentFrame" src="https://prod-web-pool.miniclip.com/mc?localmc"></iframe>
+    <iframe id="contentFrame" src="https://prod-web-pool.miniclip.com/mc?localmc" scrolling="no"></iframe>
+
+    <!-- Fullscreen Message -->
+    <div id="fullscreenMessage">Press ESC to exit Fullscreen</div>
 
     <!-- Particles.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -193,6 +225,28 @@
     <script>
         function loadPage(url) {
             document.getElementById('contentFrame').src = url;
+        }
+
+        // Function to toggle fullscreen for the iframe
+        function toggleFullscreen() {
+            var iframe = document.getElementById('contentFrame');
+            var fullscreenMessage = document.getElementById('fullscreenMessage');
+            
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+            
+            // Show the message and fade it out after 1 second
+            fullscreenMessage.classList.add('active');
+            setTimeout(function() {
+                fullscreenMessage.classList.remove('active');
+            }, 1000);
         }
     </script>
 </body>
