@@ -1,20 +1,24 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Controller</title>
+    <title>Website Command Center</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: #1a1a1a;
             color: #fff;
+            margin: 0;
+            padding: 20px;
         }
         .control-panel {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 0 auto;
             background: #2d2d2d;
+            padding: 20px;
             border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
         .connected-sites {
             background: #363636;
@@ -22,9 +26,16 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        .command-center {
+        .site-item {
+            background: #1a1a1a;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .command-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
         .command-box {
@@ -32,141 +43,156 @@
             padding: 15px;
             border-radius: 5px;
         }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: #1a1a1a;
+            border: 1px solid #4CAF50;
+            color: #fff;
+            border-radius: 4px;
+        }
         button {
             background: #4CAF50;
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             margin: 5px;
         }
         button:hover {
             background: #45a049;
         }
-        textarea {
-            width: 100%;
-            background: #1a1a1a;
-            color: #fff;
-            border: 1px solid #4CAF50;
-            border-radius: 5px;
+        .status {
             padding: 10px;
-            margin: 10px 0;
-        }
-        .site-item {
-            background: #1a1a1a;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
+            background: #4CAF50;
+            border-radius: 4px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="control-panel">
-        <h1>Website Control Center</h1>
+        <h1>Website Command Center</h1>
+        <div id="connectionStatus" class="status">Connecting...</div>
         
         <div class="connected-sites">
             <h2>Connected Websites</h2>
             <div id="sitesList"></div>
         </div>
 
-        <div class="command-center">
+        <div class="command-grid">
             <div class="command-box">
-                <h3>Content Manipulation</h3>
-                <input type="text" id="selector" placeholder="CSS Selector" style="width: 100%; margin: 5px 0;">
-                <textarea id="contentInput" rows="4" placeholder="Enter content/HTML"></textarea>
-                <button onclick="sendCommand('updateContent')">Update Content</button>
-                <button onclick="sendCommand('removeElement')">Remove Element</button>
+                <h3>Content Update</h3>
+                <input type="text" id="selector" placeholder="CSS Selector">
+                <textarea id="contentInput" rows="4" placeholder="New content/HTML"></textarea>
+                <button onclick="controller.sendCommand('updateContent')">Update Content</button>
             </div>
 
             <div class="command-box">
                 <h3>Style Control</h3>
-                <input type="text" id="styleSelector" placeholder="CSS Selector" style="width: 100%; margin: 5px 0;">
-                <input type="text" id="styleProperty" placeholder="CSS Property" style="width: 48%;">
-                <input type="text" id="styleValue" placeholder="Value" style="width: 48%;">
-                <button onclick="sendCommand('updateStyle')">Update Style</button>
+                <input type="text" id="styleSelector" placeholder="CSS Selector">
+                <input type="text" id="styleProperty" placeholder="CSS Property">
+                <input type="text" id="styleValue" placeholder="Value">
+                <button onclick="controller.sendCommand('updateStyle')">Update Style</button>
             </div>
 
             <div class="command-box">
                 <h3>JavaScript Execution</h3>
                 <textarea id="jsCode" rows="4" placeholder="Enter JavaScript code"></textarea>
-                <button onclick="sendCommand('executeJS')">Execute Code</button>
+                <button onclick="controller.sendCommand('executeJS')">Execute Code</button>
             </div>
 
             <div class="command-box">
-                <h3>Element Creation</h3>
-                <input type="text" id="elementType" placeholder="Element type (div, p, etc.)" style="width: 100%; margin: 5px 0;">
-                <input type="text" id="targetSelector" placeholder="Target selector" style="width: 100%; margin: 5px 0;">
-                <textarea id="elementContent" rows="4" placeholder="Element content/HTML"></textarea>
-                <button onclick="sendCommand('addElement')">Add Element</button>
+                <h3>Navigation Control</h3>
+                <input type="text" id="redirectUrl" placeholder="Enter URL">
+                <button onclick="controller.sendCommand('redirect')">Redirect Sites</button>
+                <button onclick="controller.sendCommand('reload')">Reload Sites</button>
             </div>
         </div>
     </div>
 
     <script>
-        let socket;
-        const connectedSites = new Set();
-
-        function initializeController() {
-            socket = new WebSocket('ws://localhost:8080');
-            
-            socket.onopen = () => {
-                console.log('Connected to control server');
-            };
-
-            socket.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                if (data.type === 'status') {
-                    updateSitesList(data);
-                }
-            };
-        }
-
-        function updateSitesList(data) {
-            connectedSites.add(data.url);
-            const sitesList = document.getElementById('sitesList');
-            sitesList.innerHTML = '';
-            connectedSites.forEach(site => {
-                const siteElement = document.createElement('div');
-                siteElement.className = 'site-item';
-                siteElement.textContent = site;
-                sitesList.appendChild(siteElement);
-            });
-        }
-
-        function sendCommand(commandType) {
-            const command = {
-                type: commandType
-            };
-
-            switch(commandType) {
-                case 'updateContent':
-                    command.selector = document.getElementById('selector').value;
-                    command.content = document.getElementById('contentInput').value;
-                    break;
-                case 'addElement':
-                    command.element = document.getElementById('elementType').value;
-                    command.target = document.getElementById('targetSelector').value;
-                    command.content = document.getElementById('elementContent').value;
-                    break;
-                case 'removeElement':
-                    command.selector = document.getElementById('selector').value;
-                    break;
-                case 'updateStyle':
-                    command.selector = document.getElementById('styleSelector').value;
-                    command.property = document.getElementById('styleProperty').value;
-                    command.value = document.getElementById('styleValue').value;
-                    break;
-                case 'executeJS':
-                    command.code = document.getElementById('jsCode').value;
-                    break;
+        class WebsiteController {
+            constructor() {
+                this.socket = null;
+                this.connectedSites = new Set();
+                this.init();
             }
 
-            socket.send(JSON.stringify(command));
+            init() {
+                this.connectWebSocket();
+            }
+
+            connectWebSocket() {
+                this.socket = new WebSocket('ws://localhost:8080');
+                
+                this.socket.onopen = () => {
+                    this.updateStatus('Connected to server', true);
+                };
+
+                this.socket.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'status') {
+                        this.updateSitesList(data);
+                    }
+                };
+
+                this.socket.onclose = () => {
+                    this.updateStatus('Reconnecting...', false);
+                    setTimeout(() => this.connectWebSocket(), 3000);
+                };
+            }
+
+            updateStatus(message, isConnected) {
+                const status = document.getElementById('connectionStatus');
+                status.textContent = message;
+                status.style.background = isConnected ? '#4CAF50' : '#f44336';
+            }
+
+            updateSitesList(data) {
+                this.connectedSites.add(data.url);
+                const sitesList = document.getElementById('sitesList');
+                sitesList.innerHTML = '';
+                
+                this.connectedSites.forEach(site => {
+                    const siteElement = document.createElement('div');
+                    siteElement.className = 'site-item';
+                    siteElement.textContent = site;
+                    sitesList.appendChild(siteElement);
+                });
+            }
+
+            sendCommand(commandType) {
+                const command = { type: commandType };
+
+                switch(commandType) {
+                    case 'updateContent':
+                        command.selector = document.getElementById('selector').value;
+                        command.content = document.getElementById('contentInput').value;
+                        break;
+                    case 'updateStyle':
+                        command.selector = document.getElementById('styleSelector').value;
+                        command.property = document.getElementById('styleProperty').value;
+                        command.value = document.getElementById('styleValue').value;
+                        break;
+                    case 'executeJS':
+                        command.code = document.getElementById('jsCode').value;
+                        break;
+                    case 'redirect':
+                        command.url = document.getElementById('redirectUrl').value;
+                        break;
+                }
+
+                if (this.socket.readyState === WebSocket.OPEN) {
+                    this.socket.send(JSON.stringify(command));
+                }
+            }
         }
 
-        // Initialize the controller when page loads
-        initializeController();
+        // Initialize the controller
+        const controller = new WebsiteController();
     </script>
 </body>
 </html>
