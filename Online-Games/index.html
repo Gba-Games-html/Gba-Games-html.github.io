@@ -33,11 +33,11 @@
 
         /* Scrollbar customization */
         ::-webkit-scrollbar {
-            width: 12px; /* Width of the scrollbar */
+            width: 12px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #E301E3, #61aaff); /* Cool gradient */
+            background: linear-gradient(45deg, #E301E3, #61aaff);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
@@ -48,7 +48,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #222; /* Dark track background */
+            background: #222;
             border-radius: 10px;
         }
 
@@ -90,14 +90,15 @@
             box-shadow: 0 10px 20px rgba(61, 106, 255, 0.5);
         }
 
-        /* Button container using grid layout */
+        /* Game Buttons Section */
         .button-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Increase button size */
             gap: 30px;
             padding: 20px;
             justify-items: center;
-            flex-grow: 1;
+            flex-grow: 1;  /* Ensure the game buttons stay above the footer */
+            margin-bottom: 69px; /* Ensure space for the footer */
         }
 
         /* Game Button Styling */
@@ -153,14 +154,16 @@
         footer {
             text-align: center;
             padding: 20px 0;
-            background-color: #222;
+            background-color: rgba(34, 34, 34, 0.9); /* Adjusted to make footer clearer */
             color: #fff;
-            position: fixed; /* Fixing the footer at the bottom */
+            position: fixed;
             bottom: 0;
             width: 100%;
-            font-size: 0.9em;
-            border-top: 3px solid #E301E3;
+            font-size: 0.8em;
+            border-top: 1px solid #E301E3;
             border-radius: 15px 15px 0 0; /* Rounded corners */
+            backdrop-filter: blur(4px); /* Reduced blur effect for better visibility */
+            z-index: 10; /* Ensure the footer stays on top of other content */
         }
 
         /* GitHub Floating Button Styling - Match the Home Button */
@@ -173,12 +176,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            padding: 6px 14px;  /* Reduced padding for a thinner button */
+            padding: 6px 14px;
             border-radius: 7px;
-            border: 1px solid rgb(227, 1, 227); /* Same border as home button */
+            border: 1px solid rgb(227, 1, 227);
             background: transparent;
             color: white;
-            font-size: 14px;  /* Same font size as home button */
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -220,6 +223,7 @@
                 <div class="game-name">Block Blast</div>
             </div>
         </a>
+        
 
         <a href="https://gba-games-html.github.io/Online-Games/8-ball-pool.html">
             <div class="game-button">
