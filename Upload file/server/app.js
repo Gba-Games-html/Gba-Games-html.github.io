@@ -2,7 +2,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const morgan = require('morgan'); // For logging requests
+const morgan = require('morgan');
+const cors = require('cors'); // For handling CORS
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -15,6 +16,9 @@ if (!fs.existsSync(uploadDir)){
 
 // Middleware for logging requests
 app.use(morgan('dev'));
+
+// Enable CORS
+app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, '../public')));
