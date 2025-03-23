@@ -1,33 +1,55 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syfer-eng's Game Hub</title>
     <script src="https://Gba-Games-html.github.io/admin-panel/site-receiver.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        @keyframes pulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.2; }
+        :root {
+            --primary-purple: #8b5cf6;
+            --dark-purple: #4c1d95;
+            --black: #0f0f0f;
         }
 
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        body {
+            background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 0;
+        }
+
+        main, nav, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-effect {
+            background: rgba(75, 0, 130, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.2);
         }
 
         .game-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 2px solid var(--primary-purple);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             aspect-ratio: 4/3;
             border-radius: 0.75rem;
-            background-color: rgb(31, 41, 55);
-            transition: all 0.3s;
         }
 
         .game-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 2px rgb(168, 85, 247);
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--primary-purple);
         }
 
         .game-card img {
@@ -39,7 +61,7 @@
 
         .game-card:hover img {
             transform: scale(1.1);
-            opacity: 0.5;
+            opacity: 0.7;
         }
 
         .game-card .overlay {
@@ -57,57 +79,40 @@
             opacity: 1;
         }
 
-        .github-button {
-            transition: all 0.3s;
+        .neon-border {
+            box-shadow: 0 0 10px var(--primary-purple),
+                        inset 0 0 10px var(--primary-purple);
         }
 
-        .github-button:hover {
-            transform: translateY(-4px);
+        .neon-text {
+            text-shadow: 0 0 10px var(--primary-purple),
+                         0 0 20px var(--primary-purple);
+            color: var(--primary-purple);
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-    <!-- Navigation -->
-    <nav id="header" class="bg-gray-800/50 backdrop-blur-sm border-b border-purple-500/20 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="6" width="20" height="12" rx="2"/>
-                        <path d="M6 12h4"/>
-                        <circle cx="18" cy="12" r="1"/>
-                        <circle cx="16" cy="12" r="1"/>
-                    </svg>
-                    <span class="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        Syfer-eng's Hub
-                    </span>
+<body class="min-h-screen text-white">
+    <div id="particles-js"></div>
+
+    <nav class="glass-effect sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl font-bold neon-text">Syfer-eng's Hub</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="https://gba-games-html.github.io/Gba-Hub.html" class="text-gray-300 hover:text-purple-500 transition-colors duration-200 font-medium">Game Boy Games</a>
-                    <a href="https://gba-games-html.github.io/Nintendo-64-hub.html" class="text-gray-300 hover:text-purple-500 transition-colors duration-200 font-medium">Nintendo-64</a>
-                    <a href="https://gba-games-html.github.io/SNES-Hub.html" class="text-gray-300 hover:text-purple-500 transition-colors duration-200 font-medium">Super NES</a>
-                    <a href="https://gba-games-html.github.io/Online-Games/index.html" class="text-gray-300 hover:text-purple-500 transition-colors duration-200 font-medium">Online Games</a>
-                    <a href="https://github.com/SYFER-eng" class="text-gray-300 hover:text-purple-500 transition-colors duration-200 font-medium">GitHub</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="https://gba-games-html.github.io/Gba-Hub.html" class="px-4 py-2 rounded-lg glass-effect hover:neon-border transition-all">Game Boy Games</a>
+                    <a href="https://gba-games-html.github.io/Nintendo-64-hub.html" class="px-4 py-2 rounded-lg glass-effect hover:neon-border transition-all">Nintendo-64</a>
+                    <a href="https://gba-games-html.github.io/SNES-Hub.html" class="px-4 py-2 rounded-lg glass-effect hover:neon-border transition-all">Super NES</a>
+                    <a href="https://gba-games-html.github.io/Online-Games/index.html" class="px-4 py-2 rounded-lg glass-effect hover:neon-border transition-all">Online Games</a>
+                    <a href="https://github.com/SYFER-eng" class="px-4 py-2 rounded-lg glass-effect hover:neon-border transition-all">GitHub</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="py-20 text-center relative overflow-hidden">
-        <div id="particles-js" class="absolute inset-0"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 animate-pulse"></div>
-        <h1 class="text-5xl font-bold mb-6 relative">
-            Welcome To
-            <span class="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                Syfer-eng's Hub!
-            </span>
-        </h1>
-    </header>
-
-    <!-- Game Grid -->
-    <main class="max-w-7xl mx-auto px-4 pb-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <main class="max-w-7xl mx-auto px-4 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             <a href="https://gba-games-html.github.io/Gba-Hub.html" class="game-card">
                 <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/game-boy-advance.jpg?raw=true" alt="Game Boy Games">
                 <div class="overlay">
@@ -135,119 +140,75 @@
                     <h3 class="text-2xl font-bold text-white text-center px-4">Online Games</h3>
                 </div>
             </a>
-
-            <a href="https://web-games-online.github.io/youtube/Index.html" class="game-card">
-                <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/Youtube-Logo.jpeg?raw=true" alt="Syfer-eng's Youtube">
-                <div class="overlay">
-                    <h3 class="text-2xl font-bold text-white text-center px-4">Syfer-eng's Youtube</h3>
-                </div>
-            </a>
         </div>
     </main>
 
-    <!-- GitHub Button -->
-    <a href="https://github.com/Gba-Games-html" target="_blank" rel="noopener noreferrer" 
-       class="github-button fixed bottom-8 right-8 flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg text-white font-semibold shadow-lg hover:shadow-purple-500/20">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-        </svg>
-        GitHub
+    <a href="https://github.com/Gba-Games-html" target="_blank" class="fixed bottom-20 right-8 px-6 py-3 rounded-full glass-effect neon-border">
+        <div class="flex items-center space-x-2">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+            <span>GitHub</span>
+        </div>
     </a>
 
-    <!-- Footer -->
-    <footer class="fixed bottom-0 w-full bg-gray-800/50 backdrop-blur-sm border-t border-purple-500/20 py-2 text-center text-sm text-gray-400">
-        © <script>document.write(new Date().getFullYear())</script> Syfer-eng | All Rights Reserved.
+    <footer class="fixed bottom-0 w-full glass-effect py-4 text-center">
+        <p class="text-purple-400">© <script>document.write(new Date().getFullYear())</script> Syfer-eng | All Rights Reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#9b59b6"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1
-                    }
-                },
-                "size": {
-                    "value": 5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 40,
-                        "size_min": 0.1
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#9b59b6",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 200,
+                density: {
+                    enable: true,
+                    value_area: 800
                 }
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    }
-                }
+            color: {
+                value: "#ffffff"
             },
-            "retina_detect": true
-        });
-
-        window.onscroll = function() {
-            var header = document.getElementById('header');
-            var scrollPosition = window.pageYOffset;
-            if (scrollPosition > 0) {
-                header.style.backgroundColor = 'rgba(31, 31, 31, 0.4)';
-            } else {
-                header.style.backgroundColor = 'rgba(31, 31, 31, 0.6)';
+            shape: {
+                type: "circle"
+            },
+            opacity: {
+                value: 0.5,
+                random: true
+            },
+            size: {
+                value: 3,
+                random: true
+            },
+            line_linked: {
+                enable: false
+            },
+            move: {
+                enable: true,
+                speed: 3,
+                direction: "bottom",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false
             }
-        };
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: "repulse"
+                },
+                onclick: {
+                    enable: true,
+                    mode: "push"
+                },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
     </script>
 </body>
 </html>
