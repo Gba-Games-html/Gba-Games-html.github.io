@@ -6,6 +6,7 @@
     <title>Syfer-eng's Game Hub</title>
     <script src="https://Gba-Games-html.github.io/admin-panel/site-receiver.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root {
             --primary-purple: #8b5cf6;
@@ -15,6 +16,19 @@
 
         body {
             background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 0;
+        }
+
+        main, nav, footer {
+            position: relative;
+            z-index: 1;
         }
 
         .glass-effect {
@@ -27,11 +41,42 @@
             background: rgba(15, 15, 15, 0.8);
             border: 2px solid var(--primary-purple);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            border-radius: 0.75rem;
         }
 
         .game-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 30px var(--primary-purple);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover img {
+            transform: scale(1.1);
+            opacity: 0.7;
+        }
+
+        .game-card .overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .game-card:hover .overlay {
+            opacity: 1;
         }
 
         .neon-border {
@@ -47,6 +92,8 @@
     </style>
 </head>
 <body class="min-h-screen text-white">
+    <div id="particles-js"></div>
+
     <nav class="glass-effect sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
@@ -64,8 +111,8 @@
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 pb-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <main class="max-w-7xl mx-auto px-4 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             <a href="https://gba-games-html.github.io/Gba-Hub.html" class="game-card">
                 <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/game-boy-advance.jpg?raw=true" alt="Game Boy Games">
                 <div class="overlay">
@@ -93,13 +140,6 @@
                     <h3 class="text-2xl font-bold text-white text-center px-4">Online Games</h3>
                 </div>
             </a>
-
-            <a href="https://web-games-online.github.io/youtube/Index.html" class="game-card">
-                <img src="https://github.com/Gba-Games-html/Gba-Games-html.github.io/blob/main/images/Youtube-Logo.jpeg?raw=true" alt="Syfer-eng's Youtube">
-                <div class="overlay">
-                    <h3 class="text-2xl font-bold text-white text-center px-4">Syfer-eng's Youtube</h3>
-                </div>
-            </a>
         </div>
     </main>
 
@@ -115,5 +155,60 @@
     <footer class="fixed bottom-0 w-full glass-effect py-4 text-center">
         <p class="text-purple-400">© <script>document.write(new Date().getFullYear())</script> Syfer-eng | All Rights Reserved.</p>
     </footer>
+
+    <script>
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 200,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: "#ffffff"
+            },
+            shape: {
+                type: "circle"
+            },
+            opacity: {
+                value: 0.5,
+                random: true
+            },
+            size: {
+                value: 3,
+                random: true
+            },
+            line_linked: {
+                enable: false
+            },
+            move: {
+                enable: true,
+                speed: 3,
+                direction: "bottom",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: "repulse"
+                },
+                onclick: {
+                    enable: true,
+                    mode: "push"
+                },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
+    </script>
 </body>
 </html>
